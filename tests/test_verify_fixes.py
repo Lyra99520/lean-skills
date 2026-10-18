@@ -39,17 +39,31 @@ def write(path: Path, content: str = "") -> None:
     path.write_text(content, encoding="utf-8")
 
 
-def write_cmd(directory: Path, name: str, body: list[str]) -> None:
-    """Write a <name>.cmd shim so shutil.which() finds it on Windows."""
+def write_cmd(directory: Path, name: str, exit_code: int = 0) -> None:
+    """Write an executable shim so shutil.which() finds it on this platform."""
     directory.mkdir(parents=True, exist_ok=True)
-    (directory / (name + ".cmd")).write_text(
-        "@echo off\r\n" + "\r\n".join(body) + "\r\n", encoding="utf-8"
-    )
+    if os.name == "nt":
+        (directory / (name + ".cmd")).write_text(
+            "@echo off\r\nexit /b %d\r\n" % exit_code, encoding="utf-8"
+        )
+    else:
+        path = directory / name
+        path.write_text("#!/bin/sh\nexit %d\n" % exit_code, encoding="utf-8")
+        path.chmod(0o755)
 
 
 def python_shim(directory: Path, name: str, script: Path, *fixed_args: str) -> None:
+    """Write an executable shim that runs `script` with the current interpreter."""
+    directory.mkdir(parents=True, exist_ok=True)
     quoted = " ".join('"%s"' % item for item in (sys.executable, str(script)) + fixed_args)
-    write_cmd(directory, name, [quoted + " %*", "exit /b %ERRORLEVEL%"])
+    if os.name == "nt":
+        (directory / (name + ".cmd")).write_text(
+            "@echo off\r\n" + quoted + " %*\r\nexit /b %ERRORLEVEL%\r\n", encoding="utf-8"
+        )
+    else:
+        path = directory / name
+        path.write_text("#!/bin/sh\n" + quoted + ' "$@"\nexit $?\n', encoding="utf-8")
+        path.chmod(0o755)
 
 
 def env_with_path(*directories: Path) -> dict:
@@ -119,7 +133,7 @@ class VerifyTest(unittest.TestCase):
         repo = self.tmp / "plain-python"
         write(repo / "tests" / "test_a.py", "def test_a():\n    assert True\n")
         bin_dir = self.tmp / "bin"
-        write_cmd(bin_dir, "pytest", ["exit /b 0"])
+        write_cmd(bin_dir, "pytest", 0)
         proc = run_verify(repo, "--dry-run", env=env_with_path(bin_dir))
         self.assertEqual(0, proc.returncode, err_text(proc))
         self.assertIn("pytest", out_text(proc))
@@ -128,7 +142,7 @@ class VerifyTest(unittest.TestCase):
         repo = self.tmp / "root-test-file"
         write(repo / "test_smoke.py", "def test_smoke():\n    pass\n")
         bin_dir = self.tmp / "bin2"
-        write_cmd(bin_dir, "pytest", ["exit /b 0"])
+        write_cmd(bin_dir, "pytest", 0)
         proc = run_verify(repo, "--dry-run", env=env_with_path(bin_dir))
         self.assertEqual(0, proc.returncode, err_text(proc))
         self.assertIn("pytest", out_text(proc))
