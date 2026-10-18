@@ -1,6 +1,6 @@
 # lean-skills
 
-[![ci](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml) [![version](https://img.shields.io/badge/version-0.2.0-blue)](CHANGELOG.md) [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![ci](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml) [![version](https://img.shields.io/badge/version-0.2.1-blue)](CHANGELOG.md) [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 Four skills and three scripts that reduce what an agent spends reading a
 codebase, and make the saving measurable.
@@ -191,12 +191,12 @@ skills/lean-context/      reading ladder, atlas.py, verify.py
 skills/lean-code/         runtime cost and correctness review
 skills/lean-stats/        measure.py
 tests/              script self-tests and the manifest validator
-CHANGELOG.md        what changed in 0.2.0
+CHANGELOG.md        what changed in each release
 ```
 
 ## License
 
 MIT. See `LICENSE`.
-See `CHANGELOG.md` for the 0.2.0 fixes.
+See `CHANGELOG.md` for the release notes.
 
 [中文说明](README.zh-CN.md)

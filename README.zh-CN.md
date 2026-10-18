@@ -1,6 +1,6 @@
 # lean-skills
 
-[![ci](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml) [![version](https://img.shields.io/badge/version-0.2.0-blue)](CHANGELOG.md) [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![ci](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/Lyra99520/lean-skills/actions/workflows/ci.yml) [![version](https://img.shields.io/badge/version-0.2.1-blue)](CHANGELOG.md) [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 四个技能和三个脚本，降低 agent 读代码库的开销，并且让省下来的量可以被测量。
 
@@ -149,12 +149,12 @@ skills/lean-context/      读取阶梯、atlas.py、verify.py
 skills/lean-code/         运行时开销与正确性审查
 skills/lean-stats/        measure.py
 tests/              脚本自测与清单校验
-CHANGELOG.md        0.2.0 改了什么
+CHANGELOG.md        每个版本的变更记录
 ```
 
 ## 许可
 
 MIT，见 `LICENSE`。
-0.2.0 的修复见 `CHANGELOG.md`。
+更新记录见 `CHANGELOG.md`。
 
 [English](README.md)

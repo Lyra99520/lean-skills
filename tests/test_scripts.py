@@ -168,7 +168,9 @@ class StructureTests(unittest.TestCase):
         for path in (ROOT / "skills").glob("*/SKILL.md"):
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("python scripts/", text, f"{path} uses a CWD-relative script path")
-            self.assertNotIn('"**Does**"', text)
+            # A sibling skill's script is addressed relative to this skill, so the
+            # same skill works as a plugin and as a standalone skills/<name> folder.
+            self.assertNotIn("${CLAUDE_PLUGIN_ROOT}/skills/", text, path)
 
     def test_skill_files_do_not_duplicate_the_description(self) -> None:
         # 0.2.0 removed the Does/Used when/Improves trio: the frontmatter

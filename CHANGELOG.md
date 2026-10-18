@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1 — 2026-10-18
+
+- Skills work outside the plugin layout: `lean-dev` addresses the sibling
+  `lean-context` scripts as `${CLAUDE_SKILL_DIR}/../lean-context/...` instead of
+  `${CLAUDE_PLUGIN_ROOT}/skills/...`, so copying `skills/` into a standalone
+  skills folder keeps every command working.
+- The verify test shims are cross-platform, so CI is green on Linux and macOS as
+  well as Windows.
+
 ## 0.2.0 — 2026-10-18
 
 Fixes the blocking defects found by an external review. The plugin now loads,

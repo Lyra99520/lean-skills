@@ -14,9 +14,11 @@ an agent cannot observe is not a rule.
 1. `.ai/atlas.md` if it exists: free, does not count.
 2. No atlas and an unfamiliar area: build one from the **lean-context** skill,
    unless the repo is under 50 files or the path is already known.
-3. `python "${CLAUDE_PLUGIN_ROOT}/skills/lean-context/scripts/atlas.py" --root . --find NAME`
-   answers "where is this symbol" in one call. Otherwise grep the symbol, then
-   read ONE candidate with `offset`/`limit`, at most 200 lines.
+3. `python "${CLAUDE_SKILL_DIR}/../lean-context/scripts/atlas.py" --root . --find NAME`
+   answers "where is this symbol" in one call. The sibling-relative path works
+   whether this skill is installed as a plugin or copied into a skills folder.
+   Otherwise grep the symbol, then read ONE candidate with `offset`/`limit`, at
+   most 200 lines.
 4. **Stop rule:** before call 4, write
    `Discovery: <3 things ruled out> | next: <grep X or ask Y>`.
    Fewer than three reasons → ask one question naming the module you suspect
@@ -40,7 +42,7 @@ Good: atlas → find symbol → read 40 lines
 ## 3. Verify — 2-identical-failure budget
 
 - Run the change's own test first:
-  `python "${CLAUDE_PLUGIN_ROOT}/skills/lean-context/scripts/verify.py" --root . --run "pytest tests/test_x.py -x"`.
+  `python "${CLAUDE_SKILL_DIR}/../lean-context/scripts/verify.py" --root . --run "pytest tests/test_x.py -x"`.
   Full `verify.py` only when no targeted test exists or the change crosses modules.
 - **Stop rule:** after a failure write `Attempt 1/2 — <error>`. Same error again →
   stop: hypothesis, evidence, what you cannot determine. Never attempt 3.
