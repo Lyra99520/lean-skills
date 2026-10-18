@@ -1,0 +1,15 @@
+# Tooling only: the scripts are imported by measure.py and checked in CI.
+# No build backend on purpose: this repository is installed as a Claude Code
+# plugin, not with pip.
+
+[tool.ruff]
+line-length = 110
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_unused_ignores = true
+ignore_missing_imports = true

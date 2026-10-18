@@ -1,0 +1,18 @@
+{
+  "name": "lean-skills",
+  "description": "Reduce how much an agent reads, re-reads and retries during coding tasks. Tiered repo atlas, compressed verification output, measured claims.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Lyra99520"
+  },
+  "homepage": "https://github.com/Lyra99520/lean-skills",
+  "repository": "https://github.com/Lyra99520/lean-skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "context-engineering",
+    "token-efficiency",
+    "code-review",
+    "performance"
+  ]
+}

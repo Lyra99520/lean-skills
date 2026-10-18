@@ -1,0 +1,17 @@
+{
+  "name": "lean-skills",
+  "owner": {
+    "name": "Lyra99520"
+  },
+  "description": "Cut the input side of context cost: tiered repo atlas, compressed verification, measured claims.",
+  "metadata": {
+    "version": "0.2.0"
+  },
+  "plugins": [
+    {
+      "name": "lean-skills",
+      "description": "Four skills that reduce how much an agent reads, re-reads and retries, plus three scripts that do the deterministic work.",
+      "source": "./"
+    }
+  ]
+}

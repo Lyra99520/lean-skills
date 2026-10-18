@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.DS_Store
+.idea/
+.vscode/
+.ai/
+*.egg-info/
+dist/
+build/
+.workbuddy-ai/

@@ -1,0 +1,8 @@
+# Keep the repository LF-only: the scripts write LF and the tests read it back.
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.png binary
+*.jpg binary
+*.zip binary
